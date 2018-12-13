@@ -20,5 +20,36 @@ console.log(add5(10))
 const add1more = add3.bind(null, 2, 3)
 console.log(add1more(11))
 
-// curry
 
+// curry
+const curriedSum = (a) => (b) => a+b
+console.log(curriedSum(3)(4))
+const curriedSum3 = curriedSum(3)
+console.log(curriedSum3(4))
+
+
+// auto curry
+_ = require('lodash')
+const add = (x, y) => x + y
+const curriedAdd = _.curry(add)
+console.log(curriedAdd(1, 2))
+console.log(curriedAdd(1)(2))
+
+
+// function composing
+const compose = (f, g) => (a) => f(g(a))
+const floorAndToString = compose((val) => val.toString(), Math.floor)
+console.log(floorAndToString(12.12))
+
+
+// continuation
+const printString =  (num) => console.log(`Given number: ${num}`)
+const addOneAndContinue = (num, cc) => {
+    const result = num + 1
+    cc(result)
+}
+console.log(addOneAndContinue(2, printString))
+
+
+const greet = (name) => `hello, ${name}`
+console.log(greet('world'))
