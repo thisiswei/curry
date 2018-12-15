@@ -53,3 +53,21 @@ console.log(addOneAndContinue(2, printString))
 
 const greet = (name) => `hello, ${name}`
 console.log(greet('world'))
+
+
+const map = (fn) => (list) => list.map(fn)
+const addyo = (a) => (b) => a + b
+const incrementAll = map(addyo(1))
+console.log(incrementAll([1,2,2]))
+
+
+// contract
+const contract = (input) => {
+    if (typeof input === 'number') return true
+    throw new Error('violated')
+}
+
+const addOne = (num) => contract(num) && num+1
+console.log(addOne(2))
+// console.log(addOne('hello'))
+
